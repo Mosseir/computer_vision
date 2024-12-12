@@ -2,6 +2,8 @@
 
 import cv2
 
+filename = "CoinCounting/coin1.jpg"
+
 def coinCounting(filename):
     im = cv2.imread(filename)
     target_size = (int(im.shape[1]/2),int(im.shape[0]/2))

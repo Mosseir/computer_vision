@@ -12,22 +12,22 @@ cv2.fillPoly(im,polygons,colors)
 im[250:340,250:340] = 0
 im[270:300,290:320] = 255
 
-contours,hierarchy = cv2.findContours(im, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-#try mode cv2.RETR_EXTERNAL and cv2.RETR_TREE
-#try method cv2.CHAIN_APPROX_NONE and cv2.CHAIN_APPROX_SIMPLE
+contours,hierarchy = cv2.findContours(im, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#try mode cv2.RETR_EXTERNAL and cv2.RETR_TREE !
+#try method cv2.CHAIN_APPROX_NONE and cv2.CHAIN_APPROX_SIMPLE !
 
 
 print('Types of contours:', type(contours))
 print('Length of contours:', len(contours))
 
-n = 0
+n = 1 ####Change Value to 1,2,3
 print('Types of each contour:', type(contours[n]))
-print('Shape of each contour:', contours[n].shape)
+print('Shape of each contour:', contours[n].shape)  #####output (total coordinate point of the polygon , col , row)
 print('Each contour value (list of points):\n',contours[n])
 
 out = np.zeros(shape =(400,400)).astype('uint8')
 for pos in contours[n]:
-    out[pos[0,1],pos[0,0]] = 255
+    out[pos[0,1],pos[0,0]] = 255 #####output will be [column , row]
 
 
 #print('Hierarchy:\n', 'Left Right Child Parent\n', hierarchy)

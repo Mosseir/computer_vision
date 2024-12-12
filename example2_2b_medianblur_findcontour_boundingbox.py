@@ -9,7 +9,7 @@ haveFrame,bg = cap.read()
 while(cap.isOpened()):
     haveFrame,im = cap.read()
 
-    if (not haveFrame) or (cv2.waitKey(1) & 0xFF == ord('q')):
+    if (not haveFrame) or (cv2.waitKey(50) & 0xFF == ord('q')): #Change video speed at cv.waitKey(OYW)
         break
 
     diffc = cv2.absdiff(im,bg)

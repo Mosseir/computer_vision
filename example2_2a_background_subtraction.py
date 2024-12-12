@@ -9,12 +9,15 @@ haveFrame,bg = cap.read()
 while(cap.isOpened()):
     haveFrame,im = cap.read()
 
-    if (not haveFrame) or (cv2.waitKey(1) & 0xFF == ord('q')):
+    if (not haveFrame) or (cv2.waitKey(70) & 0xFF == ord('q')):
         break
 
-    diffc = cv2.absdiff(im,bg)
-    diffg = cv2.cvtColor(diffc,cv2.COLOR_BGR2GRAY)
-    bwmask = cv2.inRange(diffg,50,255)
+    diffc = cv2.absdiff(im,bg) #Absolute Differential
+    diffg = cv2.cvtColor(diffc,cv2.COLOR_BGR2GRAY) 
+    # bwmask = cv2.inRange(diffg,50,255)
+    bwmask = cv2.inRange(diffg,10,255) #Threshold for detect object from env.
+    
+    # print(type(diffc[0,0,0]),type(diffg[0,0]),type(bwmask[0,0])) ####Check uint8
 
     cv2.imshow('diffc', diffc)
     cv2.moveWindow('diffc',10,10)

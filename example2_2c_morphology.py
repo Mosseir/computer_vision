@@ -10,7 +10,7 @@ haveFrame,bg = cap.read()
 while(cap.isOpened()):
     haveFrame,im = cap.read()
 
-    if (not haveFrame) or (cv2.waitKey(1) & 0xFF == ord('q')):
+    if (not haveFrame) or (cv2.waitKey(50) & 0xFF == ord('q')):
         break
 
     diffc = cv2.absdiff(im,bg)
@@ -19,12 +19,14 @@ while(cap.isOpened()):
 
     bwmask_median = cv2.medianBlur(bwmask,5)
 
+    
     kernel = np.ones((55,25), np.uint8)
     bwmask_close = cv2.morphologyEx(bwmask_median, cv2.MORPH_CLOSE, kernel)
+    
 
     contours,hierarchy = cv2.findContours(bwmask_close, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 
-    im_out_contour = im.copy()
+    im_out_contour = im.copy() #### Copy without effecting the original
     cv2.drawContours(im_out_contour, contours, -1, (0, 255, 0), 1)
 
     im_out_boundingbox = im.copy()
